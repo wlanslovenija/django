@@ -36,7 +36,7 @@ class GenericForeignKey(six.with_metaclass(RenameGenericForeignKeyMethods)):
         self.for_concrete_model = for_concrete_model
         self.editable = False
 
-    def contribute_to_class(self, cls, name):
+    def contribute_to_class(self, cls, name, **kwargs):
         self.name = name
         self.model = cls
         self.cache_attr = "_%s_cache" % name
@@ -319,8 +319,9 @@ class GenericRelation(ForeignObject):
         qs = getattr(obj, self.name).all()
         return smart_text([instance._get_pk_val() for instance in qs])
 
-    def contribute_to_class(self, cls, name):
-        super(GenericRelation, self).contribute_to_class(cls, name, virtual_only=True)
+    def contribute_to_class(self, cls, name, **kwargs):
+        kwargs['virtual_only'] = True
+        super(GenericRelation, self).contribute_to_class(cls, name, **kwargs)
         # Save a reference to which model this class is on for future use
         self.model = cls
         # Add the descriptor for the relation
