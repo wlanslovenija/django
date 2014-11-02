@@ -2,7 +2,7 @@
 Django 1.7.1 release notes
 ==========================
 
-*Under development*
+*October 22, 2014*
 
 Django 1.7.1 fixes several bugs in 1.7.
 
@@ -119,3 +119,18 @@ Bugfixes
 
 * Fixed a crash while parsing cookies containing invalid content
   (:ticket:`23638`).
+
+* The system check framework now raises error **models.E020** when the
+  class method ``Model.check()`` is unreachable (:ticket:`23615`).
+
+* Made the Oracle test database creation drop the test user in the event of an
+  unclean exit of a previous test run (:ticket:`23649`).
+
+* Fixed :djadmin:`makemigrations` to detect changes to
+  :attr:`Meta.db_table <django.db.models.Options.db_table>` (:ticket:`23629`).
+
+* Fixed a regression when feeding the Django test client with an empty data
+  string (:ticket:`21740`).
+
+* Fixed a regression in :djadmin:`makemessages` where static files were
+  unexpectedly ignored (:ticket:`23583`).
