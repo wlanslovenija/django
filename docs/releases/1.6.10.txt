@@ -1,10 +1,10 @@
-==========================
-Django 1.7.3 release notes
-==========================
+===========================
+Django 1.6.10 release notes
+===========================
 
 *January 13, 2015*
 
-Django 1.7.3 fixes several security issues and bugs in 1.7.2.
+Django 1.6.10 fixes several security issues in 1.6.9.
 
 WSGI header spoofing via underscore/dash conflation
 ===================================================
@@ -67,25 +67,3 @@ Given a form that uses ``ModelMultipleChoiceField`` and
 to cause an unreasonable number of SQL queries by submitting duplicate values
 for the field's data. The validation logic in ``ModelMultipleChoiceField`` now
 deduplicates submitted values to address this issue.
-
-Bugfixes
-========
-
-* The default iteration count for the PBKDF2 password hasher has been
-  increased by 25%. This part of the normal major release process was
-  inadvertently omitted in 1.7. This backwards compatible change will not
-  affect users who have subclassed
-  ``django.contrib.auth.hashers.PBKDF2PasswordHasher`` to change the
-  default value.
-
-* Fixed a crash in the CSRF middleware when handling non-ASCII referer header
-  (:ticket:`23815`).
-
-* Fixed a crash in the ``django.contrib.auth.redirect_to_login`` view when
-  passing a :func:`~django.core.urlresolvers.reverse_lazy` result on Python 3
-  (:ticket:`24097`).
-
-* Added correct formats for Greek (``el``) (:ticket:`23967`).
-
-* Fixed a migration crash when unapplying a migration where multiple operations
-  interact with the same model (:ticket:`24110`).
